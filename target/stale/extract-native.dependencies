@@ -1,0 +1,1 @@
+([:dependencies ([catnip "0.6.0-SNAPSHOT"] [org.clojure/clojure "1.5.0"] [instaparse/instaparse "1.0.1"] [com.novemberain/monger "1.5.0"] [me.raynes/conch "0.5.0"] [rhizome/rhizome "0.1.6"] [swiss-arrows/swiss-arrows "0.6.0"])])

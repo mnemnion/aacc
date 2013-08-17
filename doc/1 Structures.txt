@@ -1,0 +1,66 @@
+1 Structures
+
+  A noun is an atom or a cell.  An atom is any natural number.  
+  A cell is an ordered pair of nouns.
+
+1.1 Equivalencies
+
+0 = ADR, YES
+
+1 = RET, NO
+
+2 = NOC
+
+3 = CEL?
+
+4 = INC
+
+5 = EQ
+
+6 = IF
+
+7 = CMPA
+
+8 = CMPC
+
+9 = CALL
+
+10 = HINT
+
+2 Reductions
+
+  nock(a)           *a
+  [a b c]           [a [b c]]
+
+  ?[a b]            YES
+  ?a                NO
+  +a                1 + a
+  =[a a]            YES
+  =[a b]            NO
+
+  /[1 a]            a
+  /[2 a b]          a
+  /[3 a b]          b
+  /[(a + a) b]      /[2 /[a b]]
+  /[(a + a + 1) b]  /[3 /[a b]]
+
+  *[a [b c] d]      [*[a b c] *[a d]]
+
+  *[a ADR b]          /[b a]
+  *[a RET b]          b
+  *[a NOC b c]        *[*[a b] *[a c]]
+  *[a CEL? b]          ?*[a b]
+  *[a INC b]          +*[a b]
+  *[a EQ b]          =*[a b]
+
+  *[a IF b c d]      *[a NOC [ADR 1] NOC [RET c d] [1 0] NOC [1 2 3] [1 0] INC INC b]
+  *[a CMPA b c]        *[a NOC b RET c]
+  *[a CMPC b c]        *[a CMPA [[CMPA [ADR 1] b] ADR 1] c]
+  *[a 9 b c]        *[a 7 c 2 [0 1] 0 b]
+  *[a 10 b c]       *[a c]
+  *[a 10 [b c] d]   *[a 8 c 7 [0 2] d]
+
+  +[a b]            +[a b]
+  =a                =a
+  /a                /a
+  *a                *a

@@ -1,0 +1,101 @@
+{
+  "fileTypes" : [
+    "grammar"
+  ],
+  "uuid" : "8da3e770-b1cc-11e2-9e96-0800200c9a66",
+  "patterns" : [
+    {
+      "end" : "(?<=\\*\\))",
+      "begin" : "(?=\\(\\*)", 
+      "name" : "comment.block.instaparse"
+    },
+    {
+      "match" : "\\b(Epsilon|epsilon|EPSILON|eps|ε)\\b",
+      "name" : "keyword.command.instaparse",
+      "comment" : "empty token"
+    },
+    {
+      "end" : "(?<=[^\\\\])'|(?<=[^\\\\])\\\\\\\\'|[\\\\]{4}'",
+      "begin" : "'",
+      "comment" : "Single quoted strings or characters",
+      "name" : "string.quoted.single.single-line.instaparse"
+    },
+    {
+      "end" : "\"",
+      "begin" : "\"",
+      "comment" : "Double quoted strings or characters",
+      "name" : "string.quoted.double.double-line.instaparse"
+    },
+    { "match": "\\(|\\)|\\{|\\}|\\*|\\+|\\?",
+      "name" : "entity.other.attribute-name.instaparse",
+      "comment" : "empty token"
+    },
+    { "match" : "&|!|\/",
+      "name" : "constant.language.instaparse",
+      "comment" : "peg expression"
+    },
+    {
+      "begin" : "(<(\\w+)>)",
+      "end" : "(:|\\=|:\\=|::\\=)\\s",
+       "patterns" : [
+        { "include" : "$self"}
+        ],
+      "beginCaptures" : {
+        "1" : {
+          "name" : "keyword.control.twig.instaparse"
+        }
+      },
+      "endCaptures" : {
+        "1" : {
+          "name" :"keyword.operator.instaparse"
+        }
+      }
+    },
+    {
+      "begin" : "<",
+      "end"   : ">",
+      "name"  : "keyword.control.twig.instaparse",
+      "comment" : "hidden rule or token"
+    },
+    {
+      "begin" : "^\\s*([\\w\\-%@]+)\\s*",
+      "end" : "(:|\\=|:\\=|::\\=)\\s",
+      "patterns" : [
+      	{ "include" : "$self"}
+        ],
+      "beginCaptures" : {
+        "1" : {
+          "name" : "storage.type.class.instaparse"
+        }
+      },
+      "endCaptures" : {
+      	"1" : {
+      		"name" :"keyword.operator.instaparse"
+      	}
+      },
+      "comment" : "rule definition & assignment token"
+    },
+    { 
+      "match" : "\\b(\\w+)\\b",
+      "name" : "variable.instaparse",
+      "comment" : "rule name"
+    },
+    {
+      "match" : "(\\|)|;|\\.",
+      "comment" : "alternation and rule ending",
+      "name" : "keyword.operator.instaparse"
+    },
+    {
+      "match": "\\#" ,
+      "comment" : "Regex operators",
+      "name" : "variable.parameter.instaparse"
+    },
+    {
+      "match" : "^\\s*(?:@)([a-z]+)\\b",
+      "comment" : "Section definitions like @header",
+      "name" : "storage.type.function.instaparse"
+    }
+  ],
+  "name" : "Instaparse",
+  "scopeName" : "source.instaparse"
+}

@@ -1,0 +1,45 @@
+object : ws* "{"  members+ "}" ws*	
+
+members : ws* pair ws*
+		| pair "," ws* members
+
+pair : string ":"  value
+
+array : "[" elements* "]"
+
+elements : value
+		 | value "," elements
+
+value : string
+	  | number 	  
+	  | object 
+	  | array
+	  | "true"
+	  | "false"
+	  | "nil"
+	  | ws* value ws*
+
+string : '\"' #'[^\"\\]+' '\"'
+
+number : int 
+	   | int frac
+	   | int exp
+	   | int frac exp
+	   
+
+<frac> : #"[\.]" digit 	.
+
+<exp> : "e"
+	  | "e+"
+	  | "e-"
+	  | "E"
+	  | "E+"
+	  | "E-"
+
+<int> : digit
+	  | "-" digit
+
+<digit> : #"[0-9]+"
+
+
+<ws>: <#"[\s\n]+">

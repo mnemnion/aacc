@@ -1,0 +1,19 @@
+
+cluster-10::= #'a*'
+     	| cluster10*
+        | nestedCluster
+        ; 
+
+<nestedClüster>= '(' (cluster)* <')'> 
+              	| nestedCluster* 
+              	.
+
+(* this is a comment (* within another comment *) which sublime cant do*)
+
+epsilon !&/ 
+
+"\"" 👽 asdfadsf (*double-quote strings should not escape*) "
+
+'\'' (*single-quote string should *)
+
+👽
